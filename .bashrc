@@ -3,12 +3,6 @@
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
-# User specific aliases and functions
-
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -20,12 +14,17 @@ alias mv='mv -i'
 #Some I wrote myself, but most are culled and modified from the net.
 #######################################################################
 
+#interactive aliases for rm, cp and mv
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
 #list command aliases
 alias ll='ls -alh'
-alias la='ls -A'
+alias la='ls -Ah'
 alias l='ls -CFlh'
 alias woo='fortune'
-alias lsd="ls -alF | grep /$"
+alias lsd="ls -ahlF | grep /$"
 
 #vim aliases
 alias v='/usr/bin/vim'
