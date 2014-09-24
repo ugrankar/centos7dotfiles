@@ -47,20 +47,20 @@ BLUE="\[\033[34;1m\]"
 GREEN="\[\033[32;1m\]"
 WHITE="\[\033[37;1m\]"
 ORANGE="\[\033[1;33m\]"
-SMILEY="${GREEN}▶${NORMAL}"
-FROWNY="${RED}▶${NORMAL}"
+OK="${GREEN}▶${NORMAL}"
+NOTOK="${RED}▶${NORMAL}"
 #Use below if your terminal
 #is not utf-8 ready
-#SMILEY="${GREEN}:)\$${NORMAL}"
-#FROWNY="${RED}:(\$${NORMAL}"
+#OK="${GREEN}:)\$${NORMAL}"
+#NOTOK="${RED}:(\$${NORMAL}"
 
-SELECT="if [ \$? = 0 ]; then echo \"${SMILEY}\"; else echo \"${FROWNY}\"; fi"
+SMARTNESS="if [ \$? = 0 ]; then echo \"${OK}\"; else echo \"${NOTOK}\"; fi"
 
 	#Two commented lines below are from the original script. 
 	# Throw it all together 
-	#PS1="${RESET}${BLUE}\u@\h${NORMAL} \`${SELECT}\` ${GREEN}>>${NORMAL} "
+	#PS1="${RESET}${BLUE}\u@\h${NORMAL} \`${SMARTNESS}\` ${GREEN}>>${NORMAL} "
 	#My modifications are below.
-	PS1="${RESET}${BLUE}\u@${GREEN}\h${RED}:${ORANGE}\W${NORMAL} \`${SELECT}\` "
+	PS1="${RESET}${BLUE}\u@${GREEN}\h${RED}:${ORANGE}\W${NORMAL} \`${SMARTNESS}\` "
 
 #History Modifications
 export HISTFILESIZE=20000
