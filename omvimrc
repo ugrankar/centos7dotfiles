@@ -1,0 +1,118 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Personal Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"Make vim not compatible with Vi
+set nocompatible
+
+syntax on
+filetype plugin indent on
+
+set nu
+set hidden
+set ignorecase
+set incsearch
+set smartcase
+set showmatch
+set autoindent
+set ruler
+set vb
+set noerrorbells
+set showmode 
+set showcmd
+set mouse=a
+set history=1000
+set undolevels=1000
+set wildmenu
+set backspace=2
+set backspace=indent,eol,start
+set autochdir
+"important settings for line wrapping
+"do not remove these two lines below.
+set textwidth=170
+set formatoptions-=t
+"important settings for line wrapping
+"do not remove these two lines above.
+
+"NEVER EVER SET nowrap. It will mess things up.
+"Damian Conway's plugins
+"Make the color column visible only when the line actually crosses over.
+"Keep mum otherwise.
+set colorcolumn=0
+call matchadd('ColorColumn', '\%81v', 100)
+
+"set encodings
+set encoding=utf-8
+set fileencoding=utf-8
+set termencoding=utf-8
+scriptencoding utf-8
+
+"Set seperate backup directory
+set backupdir=$HOME/.vim/vimbkup
+set directory=$HOME/.vim/vimbkup
+
+"Set directory for undo files
+set undodir=$HOME/.vim/vimbkup
+
+"Set listchars for a few things
+set listchars=tab:>>
+
+"Set command to clear registers.
+function! ClearRegisters()
+	let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-="*+'
+	let i=0
+	while (i<strlen(regs))
+		exec 'let @'.regs[i].'=""'
+		let i=i+1
+	endwhile
+endfunction
+"end of function to clear registers
+command! ClearRegisters call ClearRegisters()
+"Set $ to appear when you choose cw etc.
+set cpoptions+=$
+
+"Set Virtual Edit 
+"This lets you move around a lot better.
+"set virtualedit=all 
+
+"Following key map shows/removes search match highlight when <F3> is pressed.
+nnoremap <F3> :set hlsearch!<CR>
+
+"nnoremap <F9> :NeoCompleteEnable<CR>
+
+"Search visually selected text"
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U>
+			\let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+			\gvy/<C-R><C-R>=substitute(
+			\escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+			\gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+			\let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+			\gvy?<C-R><C-R>=substitute(
+			\escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+			\gV:call setreg('"', old_reg, old_regtype)<CR>    
+
+
+"Painful setting forcing you to use h j k l only in NORMAL Mode"
+no <Down> <Nop>
+no <Up> <Nop>
+no <left> <Nop>
+no <Right> <Nop>
+
+"Painful settings disabling the arrow keys in INSERT mode" 
+ino <Down> <Nop>
+ino <Up> <Nop>
+ino <left> <Nop>
+ino <Right> <Nop>
+"Disable Menu, Scroll and Title Bar
+"set guioptions=M
+"set guioptions-=T
+set guioptions-=r
+
+"Colorschemes/status lines etc.
+colorscheme default
+
+set laststatus=2
+set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+
